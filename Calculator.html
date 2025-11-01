@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body {
+      background-color: #e3f9ff;
+      color: #3a4452;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 60px; /* increased top margin for button spacing */
+      color: #3a4452;
+      background-color: #e3f9ff;
+      padding: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #e3f9ff;
+      transition: background-color 0.3s ease;
+    }
+
+    .calculator {
+      background: #3a4452;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    .calculator form input {
+      border: 0;
+      outline: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),
+                  5px 5px 15px rgba(0, 0, 0, 0.2);
+      background: transparent;
+      font-size: 20px;
+      color: #fff;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    form .display {
+      display: flex;
+      justify-content: flex-end;
+      margin: 20px 0;
+    }
+
+    form .display input {
+      text-align: right;
+      flex: 1;
+      font-size: 45px;
+      box-shadow: none;
+      background: transparent;
+      color: #fff;
+    }
+
+    form input.equal {
+      width: 145px;
+      background-color: #00c896;
+    }
+
+    /* 🌙 LIGHT MODE */
+    body.light {
+      background-color: #f9f9f9;
+      color: #1a1a1a;
+    }
+
+    body.light h1 {
+      background-color: #f9f9f9;
+      color: #1a1a1a;
+    }
+
+    body.light .container {
+      background-color: #f9f9f9;
+    }
+
+    body.light .calculator {
+      background: #ffffff;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    }
+
+    body.light .calculator form input {
+      background: #f1f1f1;
+      color: #1a1a1a;
+      box-shadow: -3px -3px 8px rgba(255, 255, 255, 0.7),
+                  3px 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    body.light form .display input {
+      color: #1a1a1a;
+    }
+
+    /* ☀️ DARK MODE TOGGLE BUTTON */
+    .toggle-switch {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #3a4452;
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      z-index: 10;
+    }
+
+    .toggle-switch span {
+      font-weight: 600;
+    }
+
+    body.light .toggle-switch {
+      background-color: #ddd;
+      color: #000;
+    }
+
+    /* 📱 RESPONSIVE FIX */
+    @media (max-width: 600px) {
+      .toggle-switch {
+        position: static;
+        display: block;
+        margin: 15px auto 5px auto;
+        text-align: center;
+      }
+      h1 {
+        margin-top: 10px;
+        font-size: 20px;
+      }
+      .container {
+        height: auto;
+        padding-bottom: 50px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <button class="toggle-switch" id="modeToggle">
+    🌙 <span>Dark Mode</span>
+  </button>
+
+  <h1>Its a Simple Calculator</h1>
+
+  <div class="container">
+    <div class="calculator">
+      <form name="calcForm">
+        <div class="display">
+          <input type="text" name="display" readonly>
+        </div>
+        <div>
+          <input type="button" value="AC" onclick="calcForm.display.value=''">
+          <input type="button" value="DE" onclick="calcForm.display.value=calcForm.display.value.toString().slice(0,-1)">
+          <input type="button" value="." onclick="calcForm.display.value+='.'">
+          <input type="button" value="/" onclick="calcForm.display.value+='/'">
+        </div>
+        <div>
+          <input type="button" value="7" onclick="calcForm.display.value+='7'">
+          <input type="button" value="8" onclick="calcForm.display.value+='8'">
+          <input type="button" value="9" onclick="calcForm.display.value+='9'">
+          <input type="button" value="*" onclick="calcForm.display.value+='*'">
+        </div>
+        <div>
+          <input type="button" value="4" onclick="calcForm.display.value+='4'">
+          <input type="button" value="5" onclick="calcForm.display.value+='5'">
+          <input type="button" value="6" onclick="calcForm.display.value+='6'">
+          <input type="button" value="-" onclick="calcForm.display.value+='-'">
+        </div>
+        <div>
+          <input type="button" value="1" onclick="calcForm.display.value+='1'">
+          <input type="button" value="2" onclick="calcForm.display.value+='2'">
+          <input type="button" value="3" onclick="calcForm.display.value+='3'">
+          <input type="button" value="+" onclick="calcForm.display.value+='+'">
+        </div>
+        <div>
+          <input type="button" value="00" onclick="calcForm.display.value+='00'">
+          <input type="button" value="0" onclick="calcForm.display.value+='0'">
+          <input type="button" value="=" class="equal" onclick="calcForm.display.value=eval(calcForm.display.value)">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  const button = document.getElementById("modeToggle");
+
+  button.onclick = function () {
+    document.body.classList.toggle("light");
+
+    if (document.body.classList.contains("light")) {
+      button.innerHTML = "☀️ <span>Light Mode</span>";
+    } else {
+      button.innerHTML = "🌙 <span>Dark Mode</span>";
+    }
+  };
+  </script>
+</body>
+</html>
